@@ -43,8 +43,18 @@ Open-source dependencies/packages that either do not have a recipe provided by
 another well-known layer, or that are more convenient to have here.
 
 
+* recipes-opensrc-lua
+
+Open-source lua packages/dependencies.
+
+
 * recipes-tarp
 
 Recipes for public tarp packags.
 
+
+* local-conf
+
+Each file there is a build/conf/local.conf file but renamed to avoid conflict.
+The README in the respective directory explains every file.
 
