@@ -4,8 +4,6 @@ LICENSE = "CLOSED"
 
 inherit core-image
 
-PACKAGE_CLASSES = "package_ipk"
-
 #IMAGE_FSTYPES += "ext4 ext4.gz tar squashfs squashfs-xz wic.bz2 wic.bmap"
 IMAGE_FSTYPES += "tar squashfs wic.bmap"
 
