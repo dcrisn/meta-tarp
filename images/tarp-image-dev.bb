@@ -168,7 +168,9 @@ IMAGE_INSTALL += "netcat"
 # Lua libraries
 IMAGE_INSTALL += "luaposix"
 IMAGE_INSTALL += "luasocket"
-# luasocket, luafilesystem, penlight, luabitop, luasqlite
+IMAGE_INSTALL += "luafilesystem"
+IMAGE_INSTALL += "penlight"
+#, luasqlite, luabitop
 
 # tarp utils
 IMAGE_INSTALL += "libtarp"
