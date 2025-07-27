@@ -1,0 +1,22 @@
+From f7986a0481e950ececc3ae944fd32d5a8f914aaf Mon Sep 17 00:00:00 2001
+From: dcrisn <d.crisn@outlook.com>
+Date: Sun, 27 Jul 2025 01:37:42 +0100
+Subject: [PATCH] add LDFLAGS to placate yocto qa check
+
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index a7312a4..00e279e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -12,7 +12,7 @@ OBJS= src/$T.o
+ lib: src/lfs.so
+ 
+ src/lfs.so: $(OBJS)
+-	MACOSX_DEPLOYMENT_TARGET=$(MACOSX_DEPLOYMENT_TARGET); export MACOSX_DEPLOYMENT_TARGET; $(CC) $(LIB_OPTION) -o src/lfs.so $(OBJS)
++	MACOSX_DEPLOYMENT_TARGET=$(MACOSX_DEPLOYMENT_TARGET); export MACOSX_DEPLOYMENT_TARGET; $(CC) $(CFLAGS) $(LDFLAGS) $(LIB_OPTION) -o src/lfs.so $(OBJS)
+ 
+ test: lib
+ 	LUA_CPATH=./src/?.so lua tests/test.lua
