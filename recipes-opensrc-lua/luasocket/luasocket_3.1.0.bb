@@ -33,8 +33,16 @@ do_compile() {
 do_install() {
     oe_runmake DESTDIR=${D}/ install
     oe_runmake DESTDIR=${D}/ install-unix
+
+    # for -dev package
+    install -d ${D}${includedir}/luasocket
+    install -m 0644 ${S}/src/*.h ${D}${includedir}/luasocket/
 }
 
 
 FILES:${PN} = "${datadir}/lua/${LUA_VERSION} \
                ${libdir}/lua/${LUA_VERSION}"
+
+FILES:${PN} = "${incdir}/ *\
+"
+

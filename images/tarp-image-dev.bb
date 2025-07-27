@@ -1,5 +1,4 @@
-# Bloat-free image. Useful as a base for further customization.
-DESCRIPTION = "Linux image with tarp tools and many dev packages"
+DESCRIPTION = "Linux image with tarp tools and various dev packages"
 LICENSE = "CLOSED"
 
 inherit core-image
@@ -170,7 +169,10 @@ IMAGE_INSTALL += "luaposix"
 IMAGE_INSTALL += "luasocket"
 IMAGE_INSTALL += "luafilesystem"
 IMAGE_INSTALL += "penlight"
-#, luasqlite, luabitop
+IMAGE_INSTALL += "luasqlite3"
+IMAGE_INSTALL += "luajson"
+IMAGE_INSTALL += "luasec"
+# TODO: add more packages. See OpenWrt feeds.
 
 # tarp utils
 IMAGE_INSTALL += "libtarp"
