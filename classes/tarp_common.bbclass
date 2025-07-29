@@ -64,12 +64,20 @@ replace_tarp_vars(){
 # Users must set LUA_VERSION_COMPAT to a string of space-separated
 # versions e.g. LUA_VERSION_COMPAT='5.1 5.2 5.3' before calling
 # this function.
-python check_lua_version() {
+def check_lua_version(d):
     import os
     import subprocess
+    import glob
 
     d = d.getVar
-    target_lua = os.path.join(d("STAGING_DIR_TARGET"), d("bindir"), "lua")
+    STAGING_DIR_TARGET=d("STAGING_DIR_TARGET")
+    BINDIR=d("bindir")
+    target_dir = STAGING_DIR_TARGET + "/" + BINDIR
+    bb.note(f"STAGING_DIR_TARGET={STAGING_DIR_TARGET}; bindir={BINDIR}")
+    bb.note(f"Looking for Lua interpreter in {target_dir}")
+    files = glob.glob(f"{target_dir}/lua*")
+    bb.note(f"Lua Interpreter candidates: {[os.path.abspath(x) for x in files]}")
+    target_lua = target_dir + "/lua"
 
     if not os.path.isfile(target_lua):
         bb.fatal(f"Lua binary not found at: {target_lua}")
@@ -86,8 +94,15 @@ python check_lua_version() {
     if len(good_lua_versions) > 0:
         found = False
         for version in good_lua_versions:
-            if f'Lua {version}' in match: found=version
+            if f'Lua {version}' in match:
+                found=version
+                break
         if not found:
             bb.fatal(f"Incompatible Lua version detected: {match}. Required: {good_lua_versions}")
         bb.note(f"Lua version OK: Lua{version}")
+
+
+python do_check_lua_version(){
+    check_lua_version(d)
 }
+
