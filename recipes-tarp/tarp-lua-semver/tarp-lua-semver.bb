@@ -21,6 +21,7 @@ PROVIDES = "${PN}"
 
 # we need >=lua5.3 but yocto, wait for it, has no wait to express this
 # and have it be enforced reliably..
+DEPENDS = "lua"
 RDEPENDS:${PN} = "lua"
 LUA_VERSION_COMPAT := "5.3 5.4"
 SRC_URI = "git://github.com/dcrisn/mover.git;protocol=https;branch=main"
@@ -40,7 +41,7 @@ do_install() {
     ${INSTALL_DATA} ${S}/src/* ${D}/${TARP_SYSTEM_LUA_LIB_DIR}/
 }
 
-do_install[prefuncs] += "check_lua_version"
+do_install[prefuncs] += "do_check_lua_version"
 
 FILES:${PN} += "${TARP_SYSTEM_LUA_LIB_DIR}/*"
 
